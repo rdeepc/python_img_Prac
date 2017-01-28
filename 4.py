@@ -8,7 +8,6 @@ def parts(highest,number):
     while start<highest:
         start=start+fraction
         result.append(start)
-
     result.pop()
     return result
 
