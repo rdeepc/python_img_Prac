@@ -1,3 +1,5 @@
+# python 5.py image.png
+
 import sys
 import matplotlib.pyplot as plt
 
