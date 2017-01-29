@@ -1,5 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+def rgb2gray(rgb):
+    return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
+
 row_y=2
 col_x=3
 img = np.zeros([row_y,col_x,3], dtype=np.uint8)
@@ -35,6 +40,10 @@ img[1][2][2]=40
 
 
 
-print(img)
-plt.imshow(img)
+def blackWhite(rgb):
+    return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
+
+img1=plt.imread('t2.jpg')
+gim=blackWhite(img1)
+plt.imshow(gim,cmap = plt.get_cmap('gray'))
 plt.show()

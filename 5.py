@@ -2,6 +2,7 @@
 
 import sys
 import matplotlib.pyplot as plt
+import numpy as np
 
 filename=sys.argv[1]
 def parts(highest,number):
@@ -13,6 +14,10 @@ def parts(highest,number):
         result.append(start)
     result.pop()
     return result
+def rgb2gray(rgb):
+    return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
+
+
 img=plt.imread(filename)
 width_img=img.shape[1]
 height_img=img.shape[0]
@@ -32,5 +37,5 @@ for x in range(len(x_lines)):
 
 for y in range(len(y_lines)):
     plt.plot([0, width_img], [y_lines[y], y_lines[y]])
-plt.imshow(img)
+plt.imshow(rgb2gray(img),cmap = plt.get_cmap('gray'))
 plt.show()
