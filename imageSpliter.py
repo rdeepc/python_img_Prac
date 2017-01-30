@@ -1,10 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os.path as path
+import os
 import glob2
 
 
 totalImg=[]
+avgHeight=0;
+avgWeight=0
+directory = 'dataset'
+def creatfolder(sub):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    else:
+        if not os.path.exists(sub):
+            os.makedirs(dir+'/'+sub)
 
 
 def rgb2gray(rgb):
@@ -49,7 +59,9 @@ def imgCutf(Singleimg):
 
     y_first_cut = 0
     y_first_cut_gap = y_lines[0]
+
     for y in range(len(y_lines)):
+        fn = 1
         y_secondcut = int(y_first_cut + y_first_cut_gap)
         row_cut = plt.imshow(img[y_first_cut:y_secondcut, 0:width_img], cmap=plt.get_cmap('gray'))
         x_first_cut = 0
@@ -57,18 +69,22 @@ def imgCutf(Singleimg):
         for x in range(len(x_lines)):
             x_secondcut = int(x_first_cut + x_first_cut_gap)
             col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut], cmap=plt.get_cmap('gray'))
+            creatfolder(fn)
+            plt.imsave(directory + "/" + "s2.jpg", col_cut, cmap=plt.get_cmap('gray'))
             imgCutColl.append(col_cut)
             totalImg.append(col_cut)
             x_first_cut = int(x_secondcut)
-            # plt.show()
+            fn = fn + 1
+            plt.show()
 
         # print(y_first_cut, y_secondcut)
+
         y_first_cut = int(y_secondcut)
     return imgCutColl;
 
 col1=collect_img("ds")
-for im in col1:
-    imgCutf(im)
+
+for ic in col1:
+    imgCutf(ic)
 
 
-print(len(totalImg))

@@ -1,5 +1,10 @@
 import matplotlib.pyplot as plt
+import os
 
-img=plt.imread("1.jpg")
-plt.imshow(img[:,0:400])
-plt.show()
+directory='c'
+sub='fol1'
+if not os.path.exists(directory):
+    os.makedirs(directory)
+else:
+    if not os.path.exists(sub):
+        os.makedirs(directory+'/'+sub)
