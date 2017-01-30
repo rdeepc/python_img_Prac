@@ -71,5 +71,4 @@ for im in col1:
     imgCutf(im)
 
 
-# imgCutf("1.jpg")
 print(len(totalImg))
