@@ -1,10 +1,10 @@
-# python 5.py image.png
-
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
-filename=sys.argv[1]
+# //filename=sys.argv[1]
+filename='t2.jpg'
 def parts(highest,number):
     fraction=highest/number
     start=0
@@ -38,10 +38,10 @@ for x in range(len(x_lines)):
 for y in range(len(y_lines)):
     plt.plot([0, width_img], [y_lines[y], y_lines[y]])
 
-plt.imshow(rgb2gray(img),cmap = plt.get_cmap('gray'))
-plt.show()
-# plt.imsave("s1.png",rgb2gray(img),cmap = plt.get_cmap('gray'))
+# gimg=rgb2gray(img)
+# imgf=plt.imshow(gimg,cmap = plt.get_cmap('gray'))
 # directory='c'
 # if not os.path.exists(directory):
 #     os.makedirs(directory)
 # plt.imsave(directory+"/"+"s2.png",gimg,cmap = plt.get_cmap('gray'))
+# plt.show()
