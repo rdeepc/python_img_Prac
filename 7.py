@@ -8,5 +8,6 @@ for filename in glob2.glob('ds/*/**.*'): #assuming gif
         img=plt.imread(filename)
         image_list.append(img)
 
-print(len(image_list))
+print(image_list)
+
 
