@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 filename=sys.argv[1]
+
+
 def parts(highest,number):
     fraction=highest/number
     start=0
@@ -14,6 +16,8 @@ def parts(highest,number):
         result.append(start)
     result.pop()
     return result
+
+
 def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
 
