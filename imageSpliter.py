@@ -3,7 +3,7 @@ import numpy as np
 import os.path as path
 import os
 import glob2
-
+from random import randint
 
 totalImg=[]
 avgHeight=0;
@@ -17,6 +17,7 @@ def creatfolder(sub):
     else:
         if not os.path.exists(sub):
             os.makedirs(directory+'/'+sub)
+
 
 
 def rgb2gray(rgb):
@@ -71,20 +72,23 @@ def imgCutf(Singleimg):
         for x in range(len(x_lines)):
             x_secondcut = int(x_first_cut + x_first_cut_gap)
             # col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut])
-            creatfolder(fn)
-            fileName="%d_%d.jpg"%(fn,fileN)
-            fullName=directory + "/"+str(fn)+"/"+str(fileName)
+            # creatfolder(str(fn))
+            fileName="%d_%d_%d.jpg"%(fn,fileN,randint(0,999999))
+            fullName=directory +"/"+str(fileName)
             plt.imsave(fullName,img[y_first_cut:y_secondcut, x_first_cut:x_secondcut])
             # imgCutColl.append(col_cut)
             # totalImg.append(col_cut)
             x_first_cut = int(x_secondcut)
             fn = fn + 1
+            # print(fileName)
             fileN=fileN+1
-            plt.show()
+            # print(fullName)
+            # plt.show()
 
         # print(y_first_cut, y_secondcut)
 
         y_first_cut = int(y_secondcut)
+
     return imgCutColl;
 
 col1=collect_img("ds")
