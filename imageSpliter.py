@@ -70,7 +70,7 @@ def imgCutf(Singleimg):
             x_secondcut = int(x_first_cut + x_first_cut_gap)
             col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut], cmap=plt.get_cmap('gray'))
             creatfolder(fn)
-            plt.imsave(directory + "/" + "s2.jpg", col_cut, cmap=plt.get_cmap('gray'))
+            plt.imsave(directory + "/" + "%d_%d.jpg"%(fn,), col_cut, cmap=plt.get_cmap('gray'))
             imgCutColl.append(col_cut)
             totalImg.append(col_cut)
             x_first_cut = int(x_secondcut)
