@@ -9,12 +9,14 @@ totalImg=[]
 avgHeight=0;
 avgWeight=0
 directory = 'dataset'
+
+
 def creatfolder(sub):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     else:
         if not os.path.exists(sub):
-            os.makedirs(dir+'/'+sub)
+            os.makedirs(directory+'/'+sub)
 
 
 def rgb2gray(rgb):
@@ -59,22 +61,25 @@ def imgCutf(Singleimg):
 
     y_first_cut = 0
     y_first_cut_gap = y_lines[0]
-
+    fileN=1
     for y in range(len(y_lines)):
         fn = 1
         y_secondcut = int(y_first_cut + y_first_cut_gap)
-        row_cut = plt.imshow(img[y_first_cut:y_secondcut, 0:width_img], cmap=plt.get_cmap('gray'))
+        row_cut = plt.imshow(img[y_first_cut:y_secondcut, 0:width_img])
         x_first_cut = 0
         x_first_cut_gap = x_lines[0]
         for x in range(len(x_lines)):
             x_secondcut = int(x_first_cut + x_first_cut_gap)
-            col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut], cmap=plt.get_cmap('gray'))
+            # col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut])
             creatfolder(fn)
-            plt.imsave(directory + "/" + "%d_%d.jpg"%(fn,), col_cut, cmap=plt.get_cmap('gray'))
-            imgCutColl.append(col_cut)
-            totalImg.append(col_cut)
+            fileName="%d_%d.jpg"%(fn,fileN)
+            fullName=directory + "/"+str(fn)+"/"+str(fileName)
+            plt.imsave(fullName,img[y_first_cut:y_secondcut, x_first_cut:x_secondcut])
+            # imgCutColl.append(col_cut)
+            # totalImg.append(col_cut)
             x_first_cut = int(x_secondcut)
             fn = fn + 1
+            fileN=fileN+1
             plt.show()
 
         # print(y_first_cut, y_secondcut)
