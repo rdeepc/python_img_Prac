@@ -9,9 +9,7 @@ def creatfolder(sub):
     else:
         if not os.path.exists(sub):
             os.makedirs(directory+'/'+sub)
-i=1
+i=0
 
-for y in range(4):
-    for x in range(3):
-        print(i)
-        i=i+1
+for i in range(12):
+   creatfolder(str(i+1))

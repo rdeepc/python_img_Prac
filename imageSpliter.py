@@ -18,6 +18,10 @@ def creatfolder(sub):
         if not os.path.exists(sub):
             os.makedirs(directory+'/'+sub)
 
+i=0
+
+for i in range(12):
+   creatfolder(str(i+1))
 
 
 def rgb2gray(rgb):
@@ -62,7 +66,8 @@ def imgCutf(Singleimg):
 
     y_first_cut = 0
     y_first_cut_gap = y_lines[0]
-    fileN=1
+    folderN=1
+
     for y in range(len(y_lines)):
         fn = 1
         y_secondcut = int(y_first_cut + y_first_cut_gap)
@@ -73,15 +78,15 @@ def imgCutf(Singleimg):
             x_secondcut = int(x_first_cut + x_first_cut_gap)
             # col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut])
             # creatfolder(str(fn))
-            fileName="%d_%d_%d.jpg"%(fn,fileN,randint(0,999999))
-            fullName=directory +"/"+str(fileName)
+            fileName="%d_%d.jpg"%(fn,((x*y)+1))
+            fullName=directory +"/"+str((x*y)+1)+"/"+str(fileName)
             plt.imsave(fullName,img[y_first_cut:y_secondcut, x_first_cut:x_secondcut])
             # imgCutColl.append(col_cut)
             # totalImg.append(col_cut)
             x_first_cut = int(x_secondcut)
             fn = fn + 1
             # print(fileName)
-            fileN=fileN+1
+            # folderN=folderN+1
             # print(fullName)
             # plt.show()
 
