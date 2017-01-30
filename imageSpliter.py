@@ -4,6 +4,10 @@ import os.path as path
 import glob2
 
 
+def rgb2gray(rgb):
+    return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
+
+
 def collect_img(directory):
     image_list = []
     imgExt = ("png", "jpg", "jpeg")
@@ -11,7 +15,7 @@ def collect_img(directory):
         if ((path.splitext(filename)[1][1:]) in imgExt):
             img = plt.imread(filename)
             image_list.append(img)
-    return image_list
+    return rgb2gray(image_list)
 
 
 def parts(highest,number):
@@ -25,7 +29,6 @@ def parts(highest,number):
     return result
 
 
-def rgb2gray(rgb):
-    return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
+
 
 
