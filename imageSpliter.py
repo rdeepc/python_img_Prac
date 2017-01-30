@@ -4,6 +4,9 @@ import os.path as path
 import glob2
 
 
+totalImg=[]
+
+
 def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
 
@@ -15,7 +18,7 @@ def collect_img(directory):
         if ((path.splitext(filename)[1][1:]) in imgExt):
             img = plt.imread(filename)
             image_list.append(img)
-    return rgb2gray(image_list)
+    return image_list
 
 
 def parts(highest,number):
@@ -25,10 +28,48 @@ def parts(highest,number):
     while start<highest:
         start=start+fraction
         result.append(start)
-    result.pop()
     return result
 
 
+def imgCutf(Singleimg):
+    img=Singleimg
+    imgCutColl = []
+    width_img = img.shape[1]
+    height_img = img.shape[0]
+
+    if height_img > width_img:
+        x_lines = parts(width_img, 3)
+        y_lines = parts(height_img, 4)
+    elif height_img < width_img:
+        x_lines = parts(width_img, 4)
+        y_lines = parts(height_img, 3)
+    else:
+        x_lines = parts(width_img, 3)
+        y_lines = parts(height_img, 3)
+
+    y_first_cut = 0
+    y_first_cut_gap = y_lines[0]
+    for y in range(len(y_lines)):
+        y_secondcut = int(y_first_cut + y_first_cut_gap)
+        row_cut = plt.imshow(img[y_first_cut:y_secondcut, 0:width_img], cmap=plt.get_cmap('gray'))
+        x_first_cut = 0
+        x_first_cut_gap = x_lines[0]
+        for x in range(len(x_lines)):
+            x_secondcut = int(x_first_cut + x_first_cut_gap)
+            col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut], cmap=plt.get_cmap('gray'))
+            imgCutColl.append(col_cut)
+            totalImg.append(col_cut)
+            x_first_cut = int(x_secondcut)
+            # plt.show()
+
+        # print(y_first_cut, y_secondcut)
+        y_first_cut = int(y_secondcut)
+    return imgCutColl;
+
+col1=collect_img("ds")
+for im in col1:
+    imgCutf(im)
 
 
-
+# imgCutf("1.jpg")
+print(len(totalImg))

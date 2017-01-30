@@ -5,8 +5,7 @@ import os
 
 # //filename=sys.argv[1]
 filename='1.jpg'
-
-cutImg=[]
+imgCut=[]
 
 def parts(highest,number):
     fraction=highest/number
@@ -44,12 +43,13 @@ for y in range(len(y_lines)):
     for x in range(len(x_lines)):
         x_secondcut = int(x_first_cut + x_first_cut_gap)
         col_cut = plt.imshow(img[y_first_cut:y_secondcut, x_first_cut:x_secondcut], cmap=plt.get_cmap('gray'))
+        imgCut.append(col_cut)
         x_first_cut = int(x_secondcut)
-        plt.show()
+        # plt.show()
 
     print(y_first_cut, y_secondcut)
     y_first_cut=int(y_secondcut)
-
+print(len(imgCut))
     # plt.imshow(img[first_cut:secondcut,0:height_img], cmap=plt.get_cmap('gray'))
     # plt.show()
 # for y in range(len(y_lines)):
