@@ -11,7 +11,7 @@ avgWeight=0
 source_directory = 'source'
 destination='dataset'
 
-working_num=str(2)
+working_num=str(3)
 total_des_path=path.join(destination,working_num)
 total_src_path=path.join(source_directory,working_num)
 
