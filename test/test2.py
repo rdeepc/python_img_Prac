@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('dataset/3/1.jpg')
+img = cv2.imread('ds/s1/1.jpg')
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
